@@ -1,31 +1,32 @@
 package com.eg.electrogrid.model;
 
 public class consumptionmodel {
-	
-	private String id;
+	private String no;
 	private String district;
 	private String location;
 	private String weekly;
 	private String monthly;
 	
 	public consumptionmodel() {
+		
 	}
 	
-	public consumptionmodel(String id,String district,String location,String weekly,String monthly) {
+	public consumptionmodel(String no, String district, String location, String weekly, String monthly) {
 		super();
-		this.id = id;
+		this.no = no;
 		this.district = district;
 		this.location = location;
 		this.weekly = weekly;
 		this.monthly = monthly;
+		
 	}
 
-	public String getId() {
-		return id;
+	public String getNo() {
+		return no;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setNo(String no) {
+		this.no = no;
 	}
 
 	public String getDistrict() {
@@ -59,7 +60,7 @@ public class consumptionmodel {
 	public void setMonthly(String monthly) {
 		this.monthly = monthly;
 	}
-	
+
 	
 
 }
