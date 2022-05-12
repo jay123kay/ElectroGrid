@@ -15,49 +15,51 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 
-@Path("/crud")
-public class consumptionresource {
-	
-	consumptionservice service = new consumptionservice();
-	
-	@Path("/insertion")
-	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	public consumptionmodel addConsumption(consumptionmodel consumption) {
-		return consumption;
+
+	@Path("/crud")
+	public class consumptionresource {
+		
+		consumptionservice service = new consumptionservice();
+		
+		@Path("/insertion")
+		@POST
+		@Consumes(MediaType.APPLICATION_JSON)
+		public consumptionmodel addConsumption(consumptionmodel consumption) {
+			 return service.insertConsumption(consumption);
+			
+		}
+		
+		@Path("/retrieve")
+		@GET
+		@Produces(MediaType.APPLICATION_JSON)
+		public ArrayList<consumptionmodel>  getConsumption() throws SQLException {
+			 return service.getConsumption();
+			
+		}
+		
+		@Path("/retrieveByNo/{no}")
+		@GET
+		@Produces(MediaType.APPLICATION_JSON)
+		public ArrayList<consumptionmodel>  getConsumption(@PathParam("no") String no) throws SQLException {
+			return service.getConsumptionByNo(no);
+			
+		}
+		
+		@Path("/updateConsumption")
+		@POST
+		@Consumes(MediaType.APPLICATION_JSON)
+		public consumptionmodel updateConsumption(consumptionmodel consumption) {
+			 return service.updatetConsumption(consumption);
+			
+		}
+		
+		@Path("/deleteConsumptionByNo/{no}")
+		@DELETE
+		@Consumes(MediaType.APPLICATION_JSON)
+		public String deleteConsumption(@PathParam("no") String no) {
+			return service.deletetConsumption(no);
+			
+		}
 		
 	}
-	
-	@Path("/retrieve")
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public ArrayList<consumptionmodel>  getConsumption() throws SQLException {
-		 return service.getConsumption();
-		
-	}
-	
-	@Path("/retrieveByNo/{id}")
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public ArrayList<consumptionmodel>  getConsumption(@PathParam("id") String id) throws SQLException {
-		return service.getConsumptionByNo(id);
-		
-	}
-	
-	@Path("/updateConsumption")
-	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	public consumptionmodel updateConsumption(consumptionmodel consumption) {
-		 return service.updateConsumption(consumption);
-		
-	}
-	
-	@Path("/deleteConsumptionByNo/{no}")
-	@DELETE
-	@Consumes(MediaType.APPLICATION_JSON)
-	public String deleteConsumption(@PathParam("id") String id) {
-		return service.deleteConsumption(id);
-		
-	}
-	
-}
+
